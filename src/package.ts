@@ -1,6 +1,7 @@
 type AccordionItem = {
   title: string;
-  content: string;
+  content?: string;
+  replace?: string;
 };
 
 export type AccordionData = Array<AccordionItem>;
@@ -15,11 +16,11 @@ const drawMapping = (index: number, title: string, data: AccordionData) => {
   rawArray.unshift({ title, content: "" });
   for (let i = 0; i < rawArray.length; i++) {
     if (i === index) {
-      rawArray[i].title.split('\n').forEach((line, idx) => {
+      (rawArray[i].replace ?? rawArray[i].title).split('\n').forEach((line, idx) => {
         console.log(`${idx === 0 ? "❯" : "·"} ${line}`);
       });
       if (rawArray[i].content) {
-        rawArray[i].content.split('\n').forEach((line) => {
+        rawArray[i].content!.split('\n').forEach((line) => {
           console.log(`    ${line}`);
         });
       }

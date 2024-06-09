@@ -4,6 +4,7 @@ const data: AccordionData = [
   {
     title: "Title 1\nline 2\nline 3",
     content: "Content 1",
+    replace: "Good title",
   },
   {
     title: "Title 2",
