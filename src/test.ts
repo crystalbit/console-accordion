@@ -2,7 +2,7 @@ import { AccordionData, showAccordion } from "./package";
 
 const data: AccordionData = [
   {
-    title: "Title 1",
+    title: "Title 1\nline 2\nline 3",
     content: "Content 1",
   },
   {

@@ -15,14 +15,18 @@ const drawMapping = (index: number, title: string, data: AccordionData) => {
   rawArray.unshift({ title, content: "" });
   for (let i = 0; i < rawArray.length; i++) {
     if (i === index) {
-      console.log(`❯ ${rawArray[i].title}`);
+      rawArray[i].title.split('\n').forEach((line, idx) => {
+        console.log(`${idx === 0 ? "❯" : "·"} ${line}`);
+      });
       if (rawArray[i].content) {
         rawArray[i].content.split('\n').forEach((line) => {
           console.log(`    ${line}`);
         });
       }
     } else {
-      console.log(`  ${rawArray[i].title}`);
+      rawArray[i].title.split('\n').forEach((line, idx) => {
+        console.log(`${idx === 0 ? " " : " "} ${line}`);
+      });
     }
   }
   process.stderr.write('\x1B[?25l'); // hide cursor
