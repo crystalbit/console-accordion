@@ -7,13 +7,12 @@ type AccordionItem = {
 export type AccordionData = Array<AccordionItem>;
 
 export type AccordionProps = {
-  title: string;
+
 };
 
-const drawMapping = (index: number, title: string, data: AccordionData) => {
+const drawMapping = (index: number, data: AccordionData) => {
   console.clear();
   const rawArray: Array<AccordionItem> = [...data];
-  rawArray.unshift({ title, content: "" });
   for (let i = 0; i < rawArray.length; i++) {
     if (i === index) {
       (rawArray[i].replace ?? rawArray[i].title).split('\n').forEach((line, idx) => {
@@ -36,10 +35,10 @@ const drawMapping = (index: number, title: string, data: AccordionData) => {
 const UP_CODE = 65;
 const DOWN_CODE = 66;
 
-export const showAccordion = (data: AccordionData, props: AccordionProps) => {
+export const showAccordion = (data: AccordionData, props: AccordionProps = {}) => {
   let index = 0;
   (() => {
-    drawMapping(index, props.title, data);
+    drawMapping(index, data);
     process.stdin.setRawMode(true);
     process.stdin.resume();
     process.stdin.setEncoding('utf8');
@@ -61,10 +60,10 @@ export const showAccordion = (data: AccordionData, props: AccordionProps) => {
         index = index === 0 ? 0 : index - 1;
       }
       if (isDown) {
-        index = index === data.length + 1 - 1 ? data.length + 1 - 1 : index + 1;
+        index = index === data.length - 1 ? data.length - 1 : index + 1;
       }
       if (isUp || isDown) {
-        drawMapping(index, props.title, data);
+        drawMapping(index, data);
       }
     });
   })();

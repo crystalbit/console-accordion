@@ -16,6 +16,4 @@ const data: AccordionData = [
   }
 ];
 
-showAccordion(data, {
-  title: "Accordion Title",
-});
+showAccordion(data, { });
